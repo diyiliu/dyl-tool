@@ -54,6 +54,147 @@
             </section>
         </div>
     </section>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">修改头像</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="img-container">
+                                <img src="https://avatars0.githubusercontent.com/u/3456749">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="docs-preview">
+                                <div class="img-preview preview-md"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="crop">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div layout:fragment="allJs">
+    <script th:src="@{/webjars/bootstrap/4.1.0/dist/js/bootstrap.bundle.js}"></script>
+    <script th:src="@{/assets/libs/cropperjs/cropper.js}"></script>
+    <script th:inline="javascript">
+        $(function () {
+            var container = document.querySelector('.img-container');
+            var image = container.getElementsByTagName('img').item(0);
+            var $modal = $('#modal');
+            var cropper;
+            $modal.on('shown.bs.modal', function () {
+                cropper = new Cropper(image, {
+                    aspectRatio: 1,
+                    viewMode: 3,
+                    preview: '.img-preview'
+                });
+            }).on('hidden.bs.modal', function () {
+                $('#file').val('');
+                cropper.destroy();
+                cropper = null;
+            });
+
+            $('#file').on('change', function () {
+                var done = function (url) {
+                    image.src = url;
+                    $modal.modal('show');
+                };
+
+                var files = this.files;
+                if (files && files.length) {
+                    var file = files[0];
+                    if (file.size > 2 * 1024 * 1024){
+                        swal("图片大小不能超过 5MB!", "支持 JPG、GIF、PNG 格式的图片文件，且文件大小小于 5MB", "warning");
+                        return;
+                    }
+
+                    if (URL) {
+                        done(URL.createObjectURL(file));
+                    } else if (FileReader) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+
+            var $progress = $('.progress');
+            var $progressBar = $('.progress-bar');
+            $('#crop').on('click', function () {
+                var file = document.getElementById('file').files[0];
+                if (file) {
+                    $progress.show();
+
+                    var data = cropper.getData();
+                    data.name = file.name;
+                    data.type = file.type;
+
+                    var formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('data', JSON.stringify(data));
+
+                    var path = /*[[@{/image/user/}]]*/;
+                    $.ajax({
+                        type: 'post',
+                        url: path,
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        xhr: function () {
+                            var xhr = new XMLHttpRequest();
+                            xhr.upload.onprogress = function (e) {
+                                var percent = '0';
+                                var percentage = '0%';
+
+                                if (e.lengthComputable) {
+                                    percent = Math.round((e.loaded / e.total) * 100);
+                                    percentage = percent + '%';
+                                    $progressBar.width(percentage).attr('aria-valuenow', percent).text(percentage);
+                                }
+                            };
+
+                            return xhr;
+                        },
+                        success: function (result) {
+                            if (result.status == 1) {
+                                alertTip('success', '保存成功');
+                                $modal.modal('hide');
+                                document.getElementById('image').src = path + result.path;
+                                document.getElementById('userIcon').src = path + result.path;
+                            } else {
+                                alertTip('error', '保存失败');
+                            }
+                        },
+                        error: function () {
+                            alertTip('error', '保存失败');
+                        },
+                        complete: function () {
+                            $progress.hide();
+                        }
+                    });
+                } else {
+                    window.alert('Please choose an image file.');
+                }
+            });
+        });
+    </script>
 </div>
 </body>
 </html>
