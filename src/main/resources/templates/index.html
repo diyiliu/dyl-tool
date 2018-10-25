@@ -18,20 +18,20 @@
                 <div class="row gtr-uniform">
                     <div class="col-8">
                         <div class="opt">
-                            <div class="col-12">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                    <label class="custom-file-label" for="validatedCustomFile">浏览 ... </label>
-                                </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                <label class="custom-file-label" for="validatedCustomFile">浏览 ... </label>
                             </div>
 
-                            <p><span class="image left"><img th:src="@{/assets/images/pic04.jpg}" alt=""/></span>
-                            <h5>在线ico图标制作工具使用说明</h5>
-                            1. 原始图片必须为jpg、gif、png格式<br>
-                            2. 原始图片文件大小<5M。<br>
-                            3. 建议原图长宽相同，避免转换后生成的ico图标因缩放而失真。<br>
-                            4. 点击＂浏览/选择文件＂按钮上传本地图片，选择图标分辨率，再点＂下载 ICO 图标＂即可。<br>
-                            </p>
+                            <div>
+                                <p><span class="image left"><img th:src="@{/assets/images/pic04.jpg}" alt=""/></span>
+                                <h5>在线ico图标制作工具使用说明</h5>
+                                1. 原始图片必须为jpg、gif、png格式<br>
+                                2. 原始图片文件大小<5M。<br>
+                                3. 建议原图长宽相同，避免转换后生成的ico图标因缩放而失真。<br>
+                                4. 点击＂浏览/选择文件＂按钮上传本地图片，选择图标分辨率，再点＂下载 ICO 图标＂即可。<br>
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-4">
@@ -46,10 +46,9 @@
                                 </select>
                             </li>
                             <li>
-                                <a href="#" class="button fit icon fa-download">下载 ICON 图标</a>
+                                <a href="#" class="btn button primary fit icon fa-download">下载 ICON 图标</a>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </section>

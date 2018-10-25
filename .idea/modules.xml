@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dyl-tool.iml" filepath="$PROJECT_DIR$/dyl-tool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dyl-tool_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dyl-tool_main.iml" group="dyl-tool" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dyl-tool_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dyl-tool_test.iml" group="dyl-tool" />
+    </modules>
+  </component>
+</project>

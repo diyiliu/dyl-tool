@@ -2,11 +2,12 @@ body {
     background: #ffffff;
 }
 
- .container {
+.container {
     position: relative;
     width: 60em;
     margin: 0 auto;
 }
+
 @media screen and (max-width: 1280px) {
 
     .container {
@@ -14,9 +15,10 @@ body {
     }
 
 }
+
 @media screen and (max-width: 980px) {
 
-     .container {
+    .container {
         width: 100%;
     }
 
@@ -52,53 +54,22 @@ div.opt {
     border-radius: 3px;
 }
 
-.custom-file {
-    position: relative;
-    display: block;
-    width: 100%;
-    margin-bottom: 30px;
+ .custom-file-input, .custom-file-label {
+    height: calc(3rem + 2px);
 }
 
-.custom-file-input {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    margin: 0;
-    opacity: 0;
-}
-
-.custom-file-label {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-    padding: 0.375rem 0.75rem;
-    color: #4F5467;
-    background-color: #fff;
-    border: 1px solid #e9ecef;
-    border-radius: 2px;
+.custom-file-label, .custom-file-label::after {
+    line-height: 2.5rem;
 }
 
 .custom-file-label::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 3;
-    display: block;
-    padding: 0.375rem 0.75rem;
-    background-color: #ed4933;
-    color: #ffffff !important;
-    border-left: 1px solid #e9ecef;
-    border-radius: 0 2px 2px 0;
-
-    content: "  \f07c    选择文件  ";
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+    content: "\f07c    选择文件";
     font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
+    height: 3rem;
+}
+
+ul.actions.stacked select {
+    height: 2.5em;
 }
 
 #page-wrapper {
@@ -115,7 +86,7 @@ div.opt {
     bottom: 0px;
     left: 0px;
     width: 100%;
-    padding:  2em 0 3em 0;
+    padding: 2em 0 3em 0;
 }
 
 #footer > .container > ul {
@@ -123,9 +94,11 @@ div.opt {
     position: absolute;
     top: 0;
 }
+
 #footer > .container > ul.copyright {
     left: 0;
 }
+
 #footer > .container > ul.icons {
     right: 0;
 }
