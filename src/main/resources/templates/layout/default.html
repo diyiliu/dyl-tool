@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link th:href="@{/assets/images/favicon.png}" rel="icon" type="image/png">
+        <title>Home Page</title>
+
+        <link th:href="@{/webjars/font-awesome/4.3.0/css/font-awesome.min.css}" rel="stylesheet"/>
+
+        <!-- local styles -->
+        <link th:href="@{/assets/css/main.css}" rel="stylesheet">
+        <noscript>
+            <link rel="stylesheet" th:href="@{/assets/css/noscript.css}"/>
+        </noscript>
+        <link th:href="@{/assets/css/dyl-tool.css}" rel="stylesheet">
+    </head>
+
+    <body class="is-preload">
+        <!-- Page Wrapper -->
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header">
+                <div class="container">
+                    <h1><a href="index.html">Dyl Tool</a></h1>
+                    <nav id="nav">
+                        <ul>
+                            <li class="special active">
+                                <a href="#"><span>Icon制作</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <!-- Main -->
+            <div layout:fragment="main"></div>
+            <!-- Footer -->
+            <footer id="footer" class="wrapper style5">
+                <div class="container">
+                    <ul class="copyright">
+                        <li>&copy; 2018 帝一流制作</li>
+                        <li>Design: <a href="http://diyiliu.cc">DYL</a></li>
+                    </ul>
+
+                    <ul class="icons">
+                        <li><a href="javascript:void(0);" class="icon fa-qq"><span class="label">QQ</span></a></li>
+                        <li><a href="javascript:void(0);" class="icon fa-wechat"><span class="label">微信</span></a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script th:src="@{/webjars/jquery/3.3.1/dist/jquery.min.js}"></script>
+
+        <div layout:fragment="allJs"></div>
+    </body>
+</html>

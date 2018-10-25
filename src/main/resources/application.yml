@@ -1,0 +1,25 @@
+# https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/reference/htmlsingle/#common-application-properties
+server:
+  port: 8080
+
+# SPRING
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 500MB
+
+  mvc:
+    static-path-pattern: '/assets/**'
+  resources:
+    static-locations: 'classpath:/assets/'
+
+  #json
+  jackson:
+    locale: zh_CN
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+# LOGGING
+logging:
+  config: 'classpath:logback.xml'
