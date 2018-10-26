@@ -1,0 +1,31 @@
+div.opt {
+    background-color: rgba(0, 0, 0, 0.0375);
+    border: solid 1px #dfdfdf;
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 3px;
+}
+
+ .custom-file-input, .custom-file-label {
+    height: calc(3rem + 2px);
+}
+
+.custom-file-label, .custom-file-label::after {
+    line-height: 2.5rem;
+}
+
+.custom-file-label::after {
+    content: "\f07c";
+    font-family: FontAwesome;
+    height: 3rem;
+}
+
+ul.actions.stacked select {
+    height: 2.5em;
+    border: 1px solid #ced4da;
+}
+
+#imgPreview{
+    height: 180px;
+    width: 180px;
+}

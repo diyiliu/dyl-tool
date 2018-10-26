@@ -9,7 +9,7 @@
 
         <link th:href="@{/webjars/font-awesome/4.3.0/css/font-awesome.min.css}" rel="stylesheet"/>
         <link th:href="@{/webjars/bootstrap/4.1.0/dist/css/bootstrap.min.css}" rel="stylesheet"/>
-
+        <link th:href="@{/assets/libs/sweetalert/sweetalert.css}" rel="stylesheet">
         <!-- local styles -->
         <link th:href="@{/assets/css/main.css}" rel="stylesheet">
         <noscript>
@@ -24,11 +24,11 @@
             <!-- Header -->
             <header id="header">
                 <div class="content">
-                    <h1><a href="index.html">Dyl Tool</a></h1>
+                    <h1><a th:href="@{/}">Dyl Tool</a></h1>
                     <nav id="nav">
                         <ul>
                             <li class="special active">
-                                <a href="#"><span>Icon制作</span></a>
+                                <a th:href="@{/}"><span>Icon制作</span></a>
                             </li>
                         </ul>
                     </nav>
@@ -56,7 +56,7 @@
         <!-- ============================================================== -->
         <script th:src="@{/webjars/jquery/3.3.1/dist/jquery.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/4.1.0/dist/js/bootstrap.js}"></script>
-
+        <script th:src="@{/assets/libs/sweetalert/sweetalert.min.js}"></script>
         <div layout:fragment="allJs"></div>
     </body>
 </html>

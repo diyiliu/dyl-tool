@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>ico在线制作-ico转换工工具-制作favicon-帝一流工具</title>
+
+    <link th:href="@{/assets/css/dyl-ico.css}" rel="stylesheet">
 </head>
 <body>
 <div layout:fragment="main" id="main">
@@ -15,111 +17,70 @@
                     <h4>favicon转换</h4>
                     <p>ico图标在线转换工具能将png、jpg、gif等图片的格式转换成ico格式，帮您快速生成精美的ico图标。</p>
                 </header>
-                <div class="row gtr-uniform">
-                    <div class="col-8">
-                        <div class="opt">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                                <label class="custom-file-label" for="validatedCustomFile">浏览 ... </label>
-                            </div>
-
-                            <div>
-                                <p><span class="image left"><img th:src="@{/assets/images/pic04.jpg}" alt=""/></span>
-                                <h5>在线ico图标制作工具使用说明</h5>
-                                1. 原始图片必须为jpg、gif、png格式<br>
-                                2. 原始图片文件大小<5M。<br>
-                                3. 建议原图长宽相同，避免转换后生成的ico图标因缩放而失真。<br>
-                                4. 点击＂浏览/选择文件＂按钮上传本地图片，选择图标分辨率，再点＂下载 ICO 图标＂即可。<br>
-                                </p>
+                <form id="uploadForm" method="post" th:action="@{/image/ico}" enctype="multipart/form-data">
+                    <div class="row gtr-uniform">
+                        <div class="col-8">
+                            <div class="opt">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="imgFile" name="file"
+                                           accept="image/*">
+                                    <label class="custom-file-label" for="imgFile" id="imgName">浏览 ... </label>
+                                </div>
+                                <div>
+                                    <p>
+                                    <span class="image left">
+                                         <img th:src="@{/assets/images/pic04.jpg}" id="imgPreview" alt="ico"/>
+                                    </span>
+                                    <h5>在线ico图标制作工具使用说明</h5>
+                                    1. 原始图片必须为jpg、gif、png格式<br>
+                                    2. 原始图片文件大小<5M。<br>
+                                    3. 建议原图长宽相同，避免转换后生成的ico图标因缩放而失真。<br>
+                                    4. 点击＂浏览/选择文件＂按钮上传本地图片，选择图标分辨率，再点＂下载 ICO 图标＂即可。<br>
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-4">
+                            <ul class="actions stacked">
+                                <li>
+                                    <select name="size" id="size">
+                                        <option value="">- 图标尺寸 -</option>
+                                        <option value="16" selected>16 * 16</option>
+                                        <option value="32">32 * 32</option>
+                                        <option value="48">48 * 48</option>
+                                        <option value="64">64 * 64</option>
+                                        <option value="128">128 * 128</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <a href="javascript: void(0);" id="download"
+                                       class="btn button primary fit icon fa-download disabled">下载 ICO 图标</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-4">
-                        <ul class="actions stacked">
-                            <li>
-                                <select name="demo-category" id="demo-category">
-                                    <option value="">- 图标尺寸 -</option>
-                                    <option value="32" selected>32 * 32</option>
-                                    <option value="48">48 * 48</option>
-                                    <option value="64">64 * 64</option>
-                                    <option value="128">128 * 128</option>
-                                </select>
-                            </li>
-                            <li>
-                                <a href="#" class="btn button primary fit icon fa-download">下载 ICON 图标</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                </form>
             </section>
         </div>
     </section>
-
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">修改头像</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="img-container">
-                                <img src="https://avatars0.githubusercontent.com/u/3456749">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="docs-preview">
-                                <div class="img-preview preview-md"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="crop">确定</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
-
 <div layout:fragment="allJs">
-    <script th:src="@{/webjars/bootstrap/4.1.0/dist/js/bootstrap.bundle.js}"></script>
-    <script th:src="@{/assets/libs/cropperjs/cropper.js}"></script>
     <script th:inline="javascript">
         $(function () {
-            var container = document.querySelector('.img-container');
-            var image = container.getElementsByTagName('img').item(0);
-            var $modal = $('#modal');
-            var cropper;
-            $modal.on('shown.bs.modal', function () {
-                cropper = new Cropper(image, {
-                    aspectRatio: 1,
-                    viewMode: 3,
-                    preview: '.img-preview'
-                });
-            }).on('hidden.bs.modal', function () {
-                $('#file').val('');
-                cropper.destroy();
-                cropper = null;
-            });
+            var image = $('#imgPreview')[0];
 
-            $('#file').on('change', function () {
+            $('#imgFile').on('change', function () {
                 var done = function (url) {
                     image.src = url;
-                    $modal.modal('show');
+                    $('#imgName').html(file.name);
                 };
 
                 var files = this.files;
                 if (files && files.length) {
                     var file = files[0];
-                    if (file.size > 2 * 1024 * 1024){
-                        swal("图片大小不能超过 5MB!", "支持 JPG、GIF、PNG 格式的图片文件，且文件大小小于 5MB", "warning");
+                    if (file.size > 5 * 1024 * 1024) {
+                        swal("图片大小不能超过 5MB", "支持 JPG、PNG、GIF(不推荐) 格式的图片", "warning");
                         return;
                     }
 
@@ -127,70 +88,20 @@
                         done(URL.createObjectURL(file));
                     } else if (FileReader) {
                         var reader = new FileReader();
-                        reader.onload = function (e) {
+                        reader.onload = function () {
                             done(reader.result);
                         };
                         reader.readAsDataURL(file);
                     }
+
+                    $('#download').removeClass('disabled')
                 }
             });
 
-            var $progress = $('.progress');
-            var $progressBar = $('.progress-bar');
-            $('#crop').on('click', function () {
-                var file = document.getElementById('file').files[0];
+            $('#download').on('click', function () {
+                var file = document.getElementById('imgFile').files[0];
                 if (file) {
-                    $progress.show();
-
-                    var data = cropper.getData();
-                    data.name = file.name;
-                    data.type = file.type;
-
-                    var formData = new FormData();
-                    formData.append('file', file);
-                    formData.append('data', JSON.stringify(data));
-
-                    var path = /*[[@{/image/user/}]]*/;
-                    $.ajax({
-                        type: 'post',
-                        url: path,
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        xhr: function () {
-                            var xhr = new XMLHttpRequest();
-                            xhr.upload.onprogress = function (e) {
-                                var percent = '0';
-                                var percentage = '0%';
-
-                                if (e.lengthComputable) {
-                                    percent = Math.round((e.loaded / e.total) * 100);
-                                    percentage = percent + '%';
-                                    $progressBar.width(percentage).attr('aria-valuenow', percent).text(percentage);
-                                }
-                            };
-
-                            return xhr;
-                        },
-                        success: function (result) {
-                            if (result.status == 1) {
-                                alertTip('success', '保存成功');
-                                $modal.modal('hide');
-                                document.getElementById('image').src = path + result.path;
-                                document.getElementById('userIcon').src = path + result.path;
-                            } else {
-                                alertTip('error', '保存失败');
-                            }
-                        },
-                        error: function () {
-                            alertTip('error', '保存失败');
-                        },
-                        complete: function () {
-                            $progress.hide();
-                        }
-                    });
-                } else {
-                    window.alert('Please choose an image file.');
+                    $('#uploadForm').submit();
                 }
             });
         });

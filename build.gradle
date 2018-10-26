@@ -44,6 +44,10 @@ dependencies {
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
+    // 图片处理
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
+    compile group: 'net.sf.image4j', name: 'image4j', version: '0.7zensight1'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 

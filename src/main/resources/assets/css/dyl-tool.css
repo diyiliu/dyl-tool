@@ -1,3 +1,9 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body {
     background: #ffffff;
 }
@@ -37,42 +43,6 @@ body {
     box-shadow: inset 1px 1px 0px 0px rgba(0, 0, 0, 0.025), 1px 1px 0px 0px rgba(255, 255, 255, 0.025);
 }
 
-html, body {
-    padding: 0;
-    height: 100%;
-}
-
-.wrapper {
-    padding: 4em 0 1em 0;
-}
-
-div.opt {
-    background-color: rgba(0, 0, 0, 0.0375);
-    border: solid 1px #dfdfdf;
-    padding: 1em;
-    overflow-x: auto;
-    border-radius: 3px;
-}
-
- .custom-file-input, .custom-file-label {
-    height: calc(3rem + 2px);
-}
-
-.custom-file-label, .custom-file-label::after {
-    line-height: 2.5rem;
-}
-
-.custom-file-label::after {
-    content: "\f07c";
-    font-family: FontAwesome;
-    height: 3rem;
-}
-
-ul.actions.stacked select {
-    height: 2.5em;
-    border: 1px solid #ced4da;
-}
-
 #page-wrapper {
     position: relative;
     height: auto !important;
@@ -80,6 +50,10 @@ ul.actions.stacked select {
     min-height: 100%;
     /*设置padding-bottom值大于等于footer的height值，以保证main的内容能够全部显示出来而不被footer遮盖；*/
     padding-bottom: 10em;
+}
+
+.wrapper {
+    padding: 4em 0 1em 0;
 }
 
 #footer {

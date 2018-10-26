@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.sf.image4j:image4j:0.7zensight1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/.gradle/caches/modules-2/files-2.1/net.sf.image4j/image4j/0.7zensight1/b01e7f5795914a740666c969fc03d4baf2c34110/image4j-0.7zensight1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/.gradle/caches/modules-2/files-2.1/net.sf.image4j/image4j/0.7zensight1/4e9044ce69b0c923177e29d3ecdb4f593ff43d60/image4j-0.7zensight1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
