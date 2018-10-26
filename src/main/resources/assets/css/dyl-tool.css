@@ -2,7 +2,7 @@ body {
     background: #ffffff;
 }
 
-.container {
+.content {
     position: relative;
     width: 60em;
     margin: 0 auto;
@@ -10,7 +10,7 @@ body {
 
 @media screen and (max-width: 1280px) {
 
-    .container {
+    .content {
         width: 90%;
     }
 
@@ -18,7 +18,7 @@ body {
 
 @media screen and (max-width: 980px) {
 
-    .container {
+    .content {
         width: 100%;
     }
 
@@ -63,13 +63,14 @@ div.opt {
 }
 
 .custom-file-label::after {
-    content: "\f07c    选择文件";
+    content: "\f07c";
     font-family: FontAwesome;
     height: 3rem;
 }
 
 ul.actions.stacked select {
     height: 2.5em;
+    border: 1px solid #ced4da;
 }
 
 #page-wrapper {
@@ -89,16 +90,16 @@ ul.actions.stacked select {
     padding: 2em 0 3em 0;
 }
 
-#footer > .container > ul {
+#footer > .content > ul {
     margin: 0;
     position: absolute;
     top: 0;
 }
 
-#footer > .container > ul.copyright {
+#footer > .content > ul.copyright {
     left: 0;
 }
 
-#footer > .container > ul.icons {
+#footer > .content > ul.icons {
     right: 0;
 }
