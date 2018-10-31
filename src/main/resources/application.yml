@@ -1,9 +1,10 @@
 # https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/reference/htmlsingle/#common-application-properties
-server:
-  port: 8080
 
 # SPRING
 spring:
+  profiles:
+    active: dev
+
   servlet:
     multipart:
       max-file-size: 10MB
